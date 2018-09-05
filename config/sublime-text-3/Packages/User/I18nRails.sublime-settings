@@ -1,0 +1,16 @@
+{
+    // Skip this file names
+    "rejected_files": ["devise.fr.yml", "devise.en.yml", "devise.de.yml", "devise.it.yml",
+                       "simple_form.fr.yml", "simple_form.en.yml", "simple_form.de.yml",
+                       "simple_form.it.yml", "active_record.fr.yml", "active_record.en.yml",
+                       "active_record.de.yml", "active_record.it.yml", "ransack.fr.yml",
+                       "ransack.en.yml", "ransack.de.yml", "ransack.it.yml"],
+
+    // Scope names used to highlight the keys
+    "valid_color_scope": "comment",
+    "partial_color_scope": "string",
+    "invalid_color_scope": "invalid",
+
+    // Reload on save
+    "reload_highlighted_keys_on_save": true
+}

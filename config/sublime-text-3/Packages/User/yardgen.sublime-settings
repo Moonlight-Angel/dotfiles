@@ -1,0 +1,7 @@
+{
+	// Specify the @author. If not defined it will default to
+	// the login name through the environment variable USER
+	"author": "Genesis <tofupedia.fr@gmail.com>",
+	// Add an initial empty line at the beginning of the comment
+	"initial_empty_line": false
+}
