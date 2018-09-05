@@ -1,0 +1,30 @@
+// vim:ts=4:sw=4:et
+{
+    // tabbed split container with 1 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 3,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1379,
+               "width": 2542,
+               "x": 6,
+               "y": 52
+            },
+            "name": "Sublime Text",
+            "percent": 1,
+            "swallows": [
+               {
+               "class": "^subl3$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}

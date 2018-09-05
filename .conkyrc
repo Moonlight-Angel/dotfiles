@@ -1,0 +1,21 @@
+background        no
+out_to_console 	  yes
+out_to_x	  no
+update_interval	  1
+total_run_times	  0
+short_units	  yes
+pad_percents	  3
+
+override_utf8_locale yes
+
+TEXT
+,[
+	{"full_text": "   ${downspeed enp5s0}  ${upspeed enp5s0}", "color": "\#a3be8c"},
+	{"full_text": "   ${downspeed wlp3s0}  ${upspeed wlp3s0} (${wireless_link_qual wlp6s0}%)", "color": "\#a3be8c"},
+	{"full_text": "  ${cpu cpu0}% ${freq_g}GHz (${execi 1 sensors | grep 'Tdie' | cut -c16-22}) "},
+	{"full_text": "  ${mem}/${memmax} (${memperc}%) "},
+	{"full_text": "   / ${fs_used /}/${fs_size /} (${fs_used_perc /}%)"},
+	{"full_text": "   ~ ${fs_used /home}/${fs_size /home} (${fs_used_perc /home}%)"},
+	{"full_text": "  ${execi 1 amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\] \[\(.*\)\].*/\1 (\2)/'} "},
+	{"full_text": "  ${time %a %d %b %I:%M:%S %p }", "color": "\#a7adba"}
+]

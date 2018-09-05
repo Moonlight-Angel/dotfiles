@@ -1,0 +1,7 @@
+alias i3config="vim ~/.config/i3/config"
+alias zshconfig="vim ~/.zshrc"
+
+alias subl=subl3
+alias archey3=screenfetch
+
+eval $(thefuck --alias)

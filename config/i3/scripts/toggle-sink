@@ -1,0 +1,8 @@
+#!/bin/bash 
+sink=$(pacmd list-sinks | grep index | grep '*' | awk '{print $3}')
+if [ $sink = "0" ]; then newsink=2; else newsink=0; fi
+pacmd set-default-sink $newsink
+pacmd list-sink-inputs | grep index | while read line; do
+	pacmd move-sink-input `echo $line | cut -f2 -d' '` $newsink
+done
+

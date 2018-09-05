@@ -1,0 +1,295 @@
+# i3 config file
+#
+# User guide: http://i3wm.org/docs/userguide.html
+
+set $mod Mod4
+set $altmod Mod1
+
+set $scripts ~/.config/i3/scripts
+set $layouts ~/.config/i3/layouts
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:SF Pro Display Regular 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# enable workspace auto back and forth
+workspace_auto_back_and_forth yes
+
+# start a terminal
+bindsym $mod+Return exec terminator
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start a program launcher
+bindsym $mod+d exec $scripts/run-menu
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus a child container
+bindsym $mod+z focus child
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+set $w1 1 
+set $w2 2 
+set $w3 3 
+set $w4 4 
+set $w5 5 
+set $w6 6 
+set $w7 7 
+set $w8 8 
+set $w9 9 
+set $w10 10 
+
+# assign some workspaces to monitors
+workspace "$w1" output DP-2
+workspace "$w2" output HDMI-0
+workspace "$w3" output DP-2
+workspace "$w4" output HDMI-0
+workspace "$w5" output HDMI-0
+workspace "$w6" output HDMI-0
+workspace "$w10" output HDMI-0
+
+# switch to workspace
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+
+# move focused workspace to another monitor
+bindsym $mod+Shift+Ctrl+Right move workspace to output right
+bindsym $mod+Shift+Ctrl+Left move workspace to output left
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Power control mode
+set $power_control "[l]ock log[o]ut [s]uspend [h]ibernate [r]eboot [p]oweroff"
+mode  $power_control {
+    bindsym l exec $scripts/lock; mode "default"
+    bindsym o exec i3-msg exit; mode "default"
+    bindsym s exec systemctl suspend; mode "default"
+    bindsym h exec systemctl hibernate; mode "default"
+    bindsym r exec systemctl reboot; mode "default"
+    bindsym p exec systemctl poweroff; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+n mode $power_control
+
+# Mode that ignores i3 keymappings
+mode "ignore i3" {
+    bindsym Shift+Escape mode "default"
+}
+bindsym $mod+m mode "ignore i3"
+
+# Audio controls (volume up, volume down, toggle mute)
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym Shift+XF86AudioMute exec $scripts/toggle-sink
+
+# Printscreen saves screenshot
+bindsym --release Print exec --no-startup-id "flameshot gui"
+bindsym --release Shift+Print exec --no-startup-id "flameshot gui -d 2000"
+
+# Media keys
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+# Applications
+bindsym $mod+i exec firefox-developer-edition
+bindsym $mod+o exec thunar
+
+# Borders
+for_window [class="^.*"] border pixel 3
+
+# Floating assignment
+for_window [title="Library"] floating enable # Firefox's "Downloads" window.
+for_window [class="flameshot"] floating enable
+
+# Workspace assignment
+assign [class="google-chrome-unstable"] $w1
+assign [class="Thunderbird"] $w1
+assign [class="sublime_text"] $w3
+assign [class="qtcreator"] $w3
+assign [class="gitkraken"] $w3
+assign [class="slack"] $w4
+assign [class="discord"] $w4
+
+# Gaps
+gaps inner 6
+# smart_borders no_gaps
+
+bindsym $mod+y gaps inner current minus 6
+bindsym $mod+u gaps inner current plus 6
+bindsym $mod+Shift+y gaps outer current minus 6
+bindsym $mod+Shift+u gaps outer current plus 6
+
+# class                 border  backgr. text    indicator
+client.focused          #a3be8c #a3be8c #2b303b #a3be8c
+client.unfocused        #343d46 #343d46 #a7adba #343d46
+client.focused_inactive #343d46 #343d46 #a7adba #343d46
+client.urgent           #bf616a #bf616a #dfe1e8 #d08770
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command $scripts/conky-wrapper
+    position top
+    font pango:SF Pro Display Regular 10
+
+    colors {
+         background #2b303b
+         statusline #dfe1e8
+         separator  #4f5b66
+
+                            #border backgr. text
+         focused_workspace  #a3be8c #a3be8c #2b303b
+         active_workspace   #343d46 #343d46 #a7adba
+         inactive_workspace #343d46 #343d46 #a7adba
+         urgent_workspace   #bf616a #bf616a #dfe1e8
+    }
+}
+
+# Polybar
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Applets
+exec --no-startup-id dunst # notifications
+exec --no-startup-id pasystray # volume applet
+exec --no-startup-id dropbox # dropbox
+exec --no-startup-id xfsettingsd # xfce4 settings daemon
+exec --no-startup-id numlockx on # enable numlock
+exec --no-startup-id setxkbmap -layout us_qwerty-fr # change keyboard layout to qwerty-fr
+exec --no-startup-id nm-applet # NetworkManager applet
+exec --no-startup-id xbindkeys # mouse button bindings
+
+# KDEConnect daemon
+exec --no-startup-id /usr/lib/kdeconnectd
+
+# Compositor
+exec --no-startup-id compton -b --config ~/.config/compton.conf
+
+# Redshift
+exec --no-startup-id redshift-gtk
+
+# Reduce screen tearing (must be started after Redshift)
+exec --no-startup-id "nvidia-settings --assign CurrentMetaMode=\"DP-2: nvidia-auto-select +0+0, HDMI-0: nvidia-auto-select +2560+180\""
+
+# Wallpaper
+exec --no-startup-id "sleep 3 && nitrogen --restore"
+
+# Restore layouts
+exec --no-startup-id "i3-msg 'workspace \"$w1\"; append_layout $layouts/workspace-1.json'"
+exec --no-startup-id "i3-msg 'workspace \"$w2\"; append_layout $layouts/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace \"$w3\"; append_layout $layouts/workspace-3.json'"
+exec --no-startup-id "i3-msg 'workspace \"$w4\"; append_layout $layouts/workspace-4.json'"
+exec --no-startup-id "i3-msg 'workspace \"$w5\"; append_layout $layouts/workspace-5.json'"
+
+# Spawn processes
+#  Workspace 1
+exec "sleep 2 && firefox-developer-edition"
+exec "sleep 2 && spotify"
+exec "sleep 2 && thunderbird"
+#  Workspace 2
+exec "sleep 2 && terminator"
+exec "sleep 2 && terminator"
+exec "sleep 2 && terminator"
+#  Workspace 3
+exec "sleep 2 && subl"
+#  Workspace 4
+exec "sleep 2 && discord"
+exec "sleep 2 && slack"

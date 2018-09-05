@@ -1,0 +1,2 @@
+#!/bin/bash
+rofi -modi "drun,run,window" -show drun -font 'SF Pro Display 13' -show-icons
