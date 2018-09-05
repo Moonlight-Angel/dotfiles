@@ -1,16 +1,18 @@
 # Main exports
-export ZSH=/usr/share/oh-my-zsh/
+ZSH=/usr/share/oh-my-zsh/
 
 # Oh-my-zsh exports
-export ZSH_THEME="powerlevel9k/powerlevel9k"
-export DISABLE_AUTO_UPDATE="true"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+DISABLE_AUTO_UPDATE="true"
+
+# Zsh plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 plugins=(
     git
     ruby
     rails
-    zsh-autosuggestions
-    zsh-syntax-highlighting
 )
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -20,13 +22,13 @@ else
 fi
 
 # Powerlevel9k customization
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable rbenv vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
-export POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-export POWERLEVEL9K_SHOW_CHANGESET="true"
-export POWERLEVEL9K_CHANGESET_HASH_LENGTH="12"
-export POWERLEVEL9K_STATUS_VERBOSE="true"
-export DEFAULT_USER="genesis"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHOW_CHANGESET="true"
+POWERLEVEL9K_CHANGESET_HASH_LENGTH="12"
+POWERLEVEL9K_STATUS_VERBOSE="true"
+DEFAULT_USER="genesis"
 
 # RVM setup
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
