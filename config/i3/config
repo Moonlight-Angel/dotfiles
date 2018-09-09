@@ -244,9 +244,6 @@ bar {
     }
 }
 
-# Polybar
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
 # Applets
 exec --no-startup-id dunst # notifications
 exec --no-startup-id pasystray # volume applet
@@ -289,7 +286,7 @@ exec "sleep 2 && terminator"
 exec "sleep 2 && terminator"
 exec "sleep 2 && terminator"
 #  Workspace 3
-exec "sleep 2 && subl"
+exec "sleep 2 && subl3"
 #  Workspace 4
 exec "sleep 2 && discord"
 exec "sleep 2 && slack"
