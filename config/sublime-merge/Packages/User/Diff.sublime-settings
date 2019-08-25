@@ -1,4 +1,5 @@
 {
+	"auto_diff_style_min_chars": 100,
 	"draw_white_space": "all",
-	"word_wrap": "auto"
+	"word_wrap": true
 }
