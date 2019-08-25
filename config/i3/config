@@ -86,9 +86,9 @@ set $w9 9 
 set $w10 10 
 
 # assign some workspaces to monitors
-workspace "$w1" output DP-2
+workspace "$w1" output DVI-I-1
 workspace "$w2" output HDMI-0
-workspace "$w3" output DP-2
+workspace "$w3" output DVI-I-1
 workspace "$w4" output HDMI-0
 workspace "$w5" output HDMI-0
 workspace "$w6" output HDMI-0
@@ -197,15 +197,14 @@ bindsym $mod+o exec thunar
 for_window [class="^.*"] border pixel 3
 
 # Floating assignment
-for_window [title="Library"] floating enable # Firefox's "Downloads" window.
 for_window [class="flameshot"] floating enable
 
 # Workspace assignment
-assign [class="google-chrome-unstable"] $w1
+assign [class="google-chrome-stable"] $w1
 assign [class="Thunderbird"] $w1
 assign [class="sublime_text"] $w3
+assign [class="sublime_merge"] $w3
 assign [class="qtcreator"] $w3
-assign [class="gitkraken"] $w3
 assign [class="slack"] $w4
 assign [class="discord"] $w4
 
@@ -218,11 +217,11 @@ bindsym $mod+u gaps inner current plus 6
 bindsym $mod+Shift+y gaps outer current minus 6
 bindsym $mod+Shift+u gaps outer current plus 6
 
-# class                 border  backgr. text    indicator
-client.focused          #a3be8c #a3be8c #2b303b #a3be8c
-client.unfocused        #343d46 #343d46 #a7adba #343d46
-client.focused_inactive #343d46 #343d46 #a7adba #343d46
-client.urgent           #bf616a #bf616a #dfe1e8 #d08770
+# class                 border  backgr. text    indicator child_border
+client.focused          #a3be8c #a3be8c #2b303b #a3be8c   #a3be8c
+client.unfocused        #343d46 #343d46 #a7adba #343d46   #343d46
+client.focused_inactive #343d46 #343d46 #a7adba #343d46   #343d46
+client.urgent           #bf616a #bf616a #dfe1e8 #d08770   #bf616a
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -263,9 +262,6 @@ exec --no-startup-id compton -b --config ~/.config/compton.conf
 # Redshift
 exec --no-startup-id redshift-gtk
 
-# Reduce screen tearing (must be started after Redshift)
-exec --no-startup-id "nvidia-settings --assign CurrentMetaMode=\"DP-2: nvidia-auto-select +0+0, HDMI-0: nvidia-auto-select +2560+180\""
-
 # Wallpaper
 exec --no-startup-id "sleep 3 && nitrogen --restore"
 
@@ -276,17 +272,3 @@ exec --no-startup-id "i3-msg 'workspace \"$w3\"; append_layout $layouts/workspac
 exec --no-startup-id "i3-msg 'workspace \"$w4\"; append_layout $layouts/workspace-4.json'"
 exec --no-startup-id "i3-msg 'workspace \"$w5\"; append_layout $layouts/workspace-5.json'"
 
-# Spawn processes
-#  Workspace 1
-exec "sleep 2 && firefox-developer-edition"
-exec "sleep 2 && spotify"
-exec "sleep 2 && thunderbird"
-#  Workspace 2
-exec "sleep 2 && terminator"
-exec "sleep 2 && terminator"
-exec "sleep 2 && terminator"
-#  Workspace 3
-exec "sleep 2 && subl3"
-#  Workspace 4
-exec "sleep 2 && discord"
-exec "sleep 2 && slack"

@@ -18,7 +18,7 @@
                "y": 232
             },
             "name": "Discord",
-            "percent": 0.333333333333333,
+            "percent": 0.5,
             "swallows": [
                {
                "class": "^discord$"
@@ -37,26 +37,7 @@
                "y": 232
             },
             "name": "Slack",
-            "percent": 0.333333333333333,
-            "swallows": [
-               {
-               "class": "^Slack$"
-               }
-            ],
-            "type": "con"
-        },
-        {
-            "border": "pixel",
-            "current_border_width": 3,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 1019,
-               "width": 1902,
-               "x": 2569,
-               "y": 232
-            },
-            "name": "Slack",
-            "percent": 0.333333333333333,
+            "percent": 0.5,
             "swallows": [
                {
                "class": "^Slack$"
