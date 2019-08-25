@@ -10,7 +10,7 @@ Inspired by [dikiaap's dotfiles](https://github.com/dikiaap/dotfiles).
         - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - Fish-like autosuggestions for Zsh. `community/zsh-autosuggestions`
         - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - Fish shell like syntax highlighting for Zsh. `community/zsh-syntax-highlighting`
     - [Bash](https://www.gnu.org/software/bash/) - A Unix shell and command language. `core/bash`
-    - [Powerlevel9k](https://github.com/bhilburn/powerlevel9k) - The most awesome Powerline theme for ZSH around! `community/zsh-theme-powerlevel9k`
+    - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) - A fast reimplementation of Powerlevel9k ZSH theme. `aur/zsh-theme-powerlevel10k-git`
     - [vim](https://www.vim.org/) - Text editor. `extra/vim`
     - [Git](https://git-scm.com) - A free and open source distributed version control system. `extra/git`
     - [yay](https://github.com/Jguer/yay) - An AUR Helper written in Go. `aur/yay`
@@ -58,5 +58,5 @@ Inspired by [dikiaap's dotfiles](https://github.com/dikiaap/dotfiles).
 ## Arch/AUR packages install list
 
 ```
-zsh, oh-my-zsh-git, zsh-autosuggestions, zsh-syntax-highlighting, bash, zsh-theme-powerlevel9k, vim, git, yay, npm, htop, wget, kdeconnect, otf-fira-mono, i3-gaps-next-git, i3lock, scrot, imagemagick, conky, rofi, dunst, compton, redshift, firefox-developer-edition, thunar-extended, thunar-media-tags-plugin, thunar-archive-plugin, pasystray, dropbox, keepassxc, xfce4-settings, lxappearance, numlockx, xbindkeys, xautomation, networkmanager, networkmanager-openvpn, network-manager-applet, nitrogen, terminator, sublime-text-dev, arc-gtk-theme, paper-icon-theme-git, otf-san-francisco, otf-font-awesome-4, otf-fira-code
+zsh, oh-my-zsh-git, zsh-autosuggestions, zsh-syntax-highlighting, bash, zsh-theme-powerlevel10k-git, vim, git, yay, npm, htop, wget, kdeconnect, otf-fira-mono, i3-gaps-next-git, i3lock, scrot, imagemagick, conky, rofi, dunst, compton, redshift, firefox-developer-edition, thunar-extended, thunar-media-tags-plugin, thunar-archive-plugin, pasystray, dropbox, keepassxc, xfce4-settings, lxappearance, numlockx, xbindkeys, xautomation, networkmanager, networkmanager-openvpn, network-manager-applet, nitrogen, terminator, sublime-text-dev, arc-gtk-theme, paper-icon-theme-git, otf-san-francisco, otf-font-awesome-4, otf-fira-code
 ```
