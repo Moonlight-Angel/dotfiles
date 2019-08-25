@@ -1,0 +1,361 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Home row direction keys, like vim
+set $left Left
+set $down Down
+set $up Up
+set $right Right
+
+# Your preferred terminal emulator
+set $term terminator
+
+# Your preferred application launcher
+# Note: it's recommended that you pass the final command to sway
+set $i3scripts ~/.config/i3/scripts
+set $scripts ~/.config/sway/scripts
+set $menu $i3scripts/run-menu
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg ~/Pictures/wallpaper.jpg fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+output DVI-I-1 pos 0 0 res 2560x1440
+output HDMI-A-1 pos 2560 183 res 1920x1080
+
+### Idle configuration
+#
+# Example configuration:
+#
+#exec swayidle \
+#    timeout 300 'swaylock -c 000000' \
+#    timeout 600 'swaymsg "output * dpms off"' \
+#       resume 'swaymsg "output * dpms on"' \
+#    before-sleep 'swaylock -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+exec swayidle \
+    timeout 600 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"'
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+    input "6940:6921:Corsair_Corsair_K70R_Gaming_Keyboard" {
+        xkb_layout us_qwerty-fr
+        xkb_options sway
+        xkb_numlock enabled
+        repeat_delay 200
+        repeat_rate 35
+    }
+
+    input "1133:16480:Logitech_MX_Master" {
+
+    }
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+
+    # kill focused window
+    bindsym $mod+Shift+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+
+    # move focused workspace to another monitor
+    bindsym $mod+Shift+Ctrl+Right move workspace to output right
+    bindsym $mod+Shift+Ctrl+Left move workspace to output left
+#
+# Workspaces:
+#
+    set $w1 1 
+    set $w2 2 
+    set $w3 3 
+    set $w4 4 
+    set $w5 5 
+    set $w6 6 
+    set $w7 7 
+    set $w8 8 
+    set $w9 9 
+    set $w10 10 
+
+    # switch to workspace
+    bindsym $mod+1 workspace $w1
+    bindsym $mod+2 workspace $w2
+    bindsym $mod+3 workspace $w3
+    bindsym $mod+4 workspace $w4
+    bindsym $mod+5 workspace $w5
+    bindsym $mod+6 workspace $w6
+    bindsym $mod+7 workspace $w7
+    bindsym $mod+8 workspace $w8
+    bindsym $mod+9 workspace $w9
+    bindsym $mod+0 workspace $w10
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $w1
+    bindsym $mod+Shift+2 move container to workspace $w2
+    bindsym $mod+Shift+3 move container to workspace $w3
+    bindsym $mod+Shift+4 move container to workspace $w4
+    bindsym $mod+Shift+5 move container to workspace $w5
+    bindsym $mod+Shift+6 move container to workspace $w6
+    bindsym $mod+Shift+7 move container to workspace $w7
+    bindsym $mod+Shift+8 move container to workspace $w8
+    bindsym $mod+Shift+9 move container to workspace $w9
+    bindsym $mod+Shift+0 move container to workspace $w10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+    # assign some workspaces to monitors
+    workspace "$w1" output DVI-I-1
+    workspace "$w2" output HDMI-0
+    workspace "$w3" output DVI-I-1
+    workspace "$w4" output HDMI-0
+    workspace "$w5" output HDMI-0
+    workspace "$w6" output HDMI-0
+    workspace "$w10" output HDMI-0
+
+    # assign some workspaces to applications
+    assign [class="google-chrome-stable"] $w1
+    assign [class="Thunderbird"] $w1
+    assign [class="sublime_text"] $w3
+    assign [class="sublime_merge"] $w3
+    assign [class="qtcreator"] $w3
+    assign [class="slack"] $w4
+    assign [class="discord"] $w4
+
+    # assign some windows to float mode
+    for_window [class="flameshot"] floating enable
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+h splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    #bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+
+    # move focus to the child container
+    bindsym $mod+z focus child
+
+    # enable workspace auto back and forth
+    workspace_auto_back_and_forth yes
+
+    # toggle sticky
+    bindsym $mod+Shift+s sticky toggle
+#
+# Gaps
+#
+    gaps inner 6
+    # smart_borders no_gaps
+
+    bindsym $mod+y gaps inner current minus 6
+    bindsym $mod+u gaps inner current plus 6
+    bindsym $mod+Shift+y gaps outer current minus 6
+    bindsym $mod+Shift+u gaps outer current plus 6
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Shortcuts
+#
+    # Audio controls (volume up, volume down, toggle mute)
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym Shift+XF86AudioMute exec $i3scripts/toggle-sink
+
+    # Printscreen saves screenshot
+    bindsym --release Print exec --no-startup-id grim -g "$(slurp)" - | wl-copy
+    bindsym --release Shift+Print exec --no-startup-id sleep 2 && grim -g "$(slurp)" - | wl-copy
+
+    # Media keys
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86AudioStop exec playerctl stop
+
+    # Applications
+    bindsym $mod+i exec firefox-developer-edition
+    bindsym $mod+o exec thunar
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10ppt
+    bindsym $down resize grow height 10ppt
+    bindsym $up resize shrink height 10ppt
+    bindsym $right resize grow width 10ppt
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Power control mode
+#
+set $power_control "[l]ock log[o]ut [s]uspend [h]ibernate [r]eboot [p]oweroff"
+mode  $power_control {
+    bindsym l exec $i3scripts/lock; mode "default"
+    bindsym o exec swaymsg exit; mode "default"
+    bindsym s exec systemctl suspend; mode "default"
+    bindsym h exec systemctl hibernate; mode "default"
+    bindsym r exec systemctl reboot; mode "default"
+    bindsym p exec systemctl poweroff; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+n mode $power_control
+
+#
+# Mode that ignores sway keymappings
+#
+mode "ignore sway" {
+    bindsym Shift+Escape mode "default"
+}
+bindsym $mod+m mode "ignore sway"
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    status_command ~/.config/i3/scripts/conky-wrapper
+    font pango:SF Pro Display Regular 10
+
+    colors {
+         background #2b303b
+         statusline #dfe1e8
+         separator  #4f5b66
+
+                            #border backgr. text
+         focused_workspace  #a3be8c #a3be8c #2b303b
+         active_workspace   #343d46 #343d46 #a7adba
+         inactive_workspace #343d46 #343d46 #a7adba
+         urgent_workspace   #bf616a #bf616a #dfe1e8
+    }
+}
+
+#
+# Theme
+#
+    # Font for window titles. Will also be used by the bar unless a different font
+    # is used in the bar {} block below.
+    font pango:SF Pro Display Regular 10
+
+    # class                 border  backgr. text    indicator child_border
+    client.focused          #a3be8c #a3be8c #2b303b #a3be8c   #a3be8c
+    client.unfocused        #343d46 #343d46 #a7adba #343d46   #343d46
+    client.focused_inactive #343d46 #343d46 #a7adba #343d46   #343d46
+    client.urgent           #bf616a #bf616a #dfe1e8 #d08770   #bf616a
+
+    titlebar_padding 3
+
+#
+# Autorun
+#
+    exec --no-startup-id dunst # notifications
+#   exec --no-startup-id pasystray # volume applet
+    exec --no-startup-id dropbox # dropbox
+#   exec --no-startup-id xfsettingsd # xfce4 settings daemon
+#   exec --no-startup-id numlockx on # enable numlock
+#   exec --no-startup-id setxkbmap -layout us_qwerty-fr # change keyboard layout to qwerty-fr
+#   exec --no-startup-id nm-applet # NetworkManager applet
+#   exec --no-startup-id xbindkeys # mouse button bindings
+
+    # Redshift
+   exec --no-startup-id redshift -m wayland
+
+include /etc/sway/config.d/*
