@@ -12,6 +12,8 @@ source ~/.exports
 # Oh My Zsh time !
 source $ZSH/oh-my-zsh.sh
 
+# Clean unused exports
+unset plugins
+
 # Aliases
 source ~/.aliases
-
