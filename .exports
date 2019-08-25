@@ -12,6 +12,9 @@ plugins=(
     git
     ruby
     rails
+    docker
+    docker-compose
+    autoenv
 )
 
 if [[ -n $SSH_CONNECTION ]]; then
