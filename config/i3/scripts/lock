@@ -2,6 +2,8 @@
 SOUND=$(amixer sget Master | awk -F"[][]" '/Front Left.*%/ { print $4 }')
 scrot /tmp/screenshot.png
 convert /tmp/screenshot.png -blur 0x10 /tmp/screenshotblur.png
+rm /tmp/screenshot.png
 pactl set-sink-mute @DEFAULT_SINK@ 1
 i3lock -n -i /tmp/screenshotblur.png
+rm /tmp/screenshotblur.png
 if [ $SOUND = "on" ]; then pactl set-sink-mute @DEFAULT_SINK@ 0; fi
