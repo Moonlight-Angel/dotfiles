@@ -12,7 +12,7 @@
 		"gray_antialias",
 		"subpixel_antialias"
 	],
-	"font_size": 14,
+	"font_size": 13,
 	"highlight_line": true,
 	"ignored_packages":
 	[
@@ -44,6 +44,7 @@
 	"theme_scrollbar_colored": true,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
+	"update_check": false,
 	"word_separators": "./\\()\"'-:,.;<>~@#$%^&*|+=[]{}`~",
 	"word_wrap": true,
 	"wrap_width": 100
